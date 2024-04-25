@@ -1,0 +1,63 @@
+/* Main.css */
+
+/* Container for menu items */
+.Menu {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  /* Individual menu item */
+  .Menu-item {
+    flex: 1;
+    margin: 0 10px; /* Add margin for spacing between items */
+    padding: 20px;
+    background-color: #f9f9f9; /* Background color for menu items */
+    border-radius: 16px; /* Rounded corners */
+  }
+  
+  /* Price styling */
+  .price {
+    color: #ff6347; /* Red color for price */
+    margin-bottom: 10px; /* Add some spacing between price and description */
+  }
+  
+  /* Item name styling */
+  h5 {
+    font-weight: bold;
+    color: #000; /* Black color for item name */
+  }
+  
+  /* Item description styling */
+  Main p {
+    color: #555; /* Dark gray color for item description */
+  }
+  
+  /* Image styling */
+  .Menu-item img {
+    border-radius: 16px; /* Rounded corners for images */
+    width: 100%; /* Ensure images fill the container */
+    height: 40%; /* Maintain aspect ratio */
+  }
+  .Text-But {
+    display: flex;
+  }
+  /* Main.css */
+
+/* Container for header content */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Vertically center items */
+  }
+  
+  /* Button styling */
+  button {
+    margin-left: 20px; /* Add some space between h6 and button */
+  }
+  
+  /* Main content */
+  main {
+    margin-top: 20px; /* Add some space between header and main content */
+    background-color: white;
+  }
+  

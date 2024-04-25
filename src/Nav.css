@@ -1,0 +1,47 @@
+/* App.css */
+
+/* Navigation Styles */
+nav {
+    padding: 10px; /* Padding around the navigation */
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Center items vertically */
+  }
+  
+  /* Logo Styles */
+  nav img {
+    height: 40px; /* Adjust height as needed */
+    width: 200px; /* Maintain aspect ratio */
+    margin-right: 60px; /* Space between logo and links */
+  }
+  
+  /* List Styles */
+  nav ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+    display: flex; /* Use flexbox for layout */
+  }
+  
+  /* List Item Styles */
+  nav li {
+    margin-right: 20px; /* Space between list items */
+  }
+  
+  /* Link Styles */
+  nav a {
+    color: black; /* Text color */
+    text-decoration: none; /* Remove underline */
+    transition: color 0.3s; /* Smooth color transition */
+  }
+  
+  /* Link Hover Styles */
+  nav a:hover {
+    color: #ffd700; /* Change text color on hover */
+  }
+  
+  /* Heading Styles */
+  nav h1 {
+    color: #fff; /* Text color */
+    font-size: 1.2em; /* Adjust font size as needed */
+  }
+  
