@@ -1,11 +1,16 @@
+import React from 'react';
+
+import Nav from './Nav';
+import Header from './Header';
+
 
 function Reserve() {
-    return (
-      <div>
-        <h1>Reserve a table</h1>
-      </div>
-    );
-  }
-  
-  export default Reserve;
-  
+  return (
+    <div>
+      <Nav />
+      <Header showButton={false}/>
+    </div>
+  );
+}
+
+export default Reserve;
