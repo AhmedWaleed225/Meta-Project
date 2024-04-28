@@ -2,7 +2,7 @@
 import React from 'react';
 import Nav from './Nav';
 import Header from './Header';
-import Main from './Main';
+import Maiin from './Maiin';
 
 
 function Home() {
@@ -10,7 +10,7 @@ function Home() {
     <div>
       <Nav />
       <Header buttonText='Reserve a Table' />
-      <Main />
+      <Maiin />
     </div>
   );
 }

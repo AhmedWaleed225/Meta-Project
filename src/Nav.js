@@ -9,7 +9,7 @@ function Nav() {
           <li><a href="/home">Homepage</a></li>
           <li><a href="/about">About Us</a></li>
           <li><a href="/menu">Menu</a></li>
-          <li><a href="/reserve">Reservations</a></li>
+          <li><a href="/reserve">Reserve</a></li>
           <li><a href="/order">Order Online</a></li>
           <li><a href="/login">Login</a></li>
         </ul>

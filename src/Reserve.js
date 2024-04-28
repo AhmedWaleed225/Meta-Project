@@ -2,6 +2,7 @@ import React from 'react';
 
 import Nav from './Nav';
 import Header from './Header';
+import Main from './Main';
 
 
 function Reserve() {
@@ -9,6 +10,7 @@ function Reserve() {
     <div>
       <Nav />
       <Header showButton={false}/>
+      <Main />
     </div>
   );
 }

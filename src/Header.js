@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './Header.css';
 
-function Header({ buttonColor, buttonText, showButton }) {
+function Header({ buttonText, showButton }) {
   return (
     <header>
         <div className='header-content'>
@@ -15,7 +15,7 @@ function Header({ buttonColor, buttonText, showButton }) {
                 {/* Render the button only if showButton is true */}
                 {showButton && (
                   <Link to="/reserve">
-                      <button className="header-button" style={{ backgroundColor: buttonColor }}>
+                      <button className="header-button">
                           {buttonText}
                       </button>
                   </Link>
@@ -28,7 +28,6 @@ function Header({ buttonColor, buttonText, showButton }) {
 }
 
 Header.propTypes = {
-    buttonColor: PropTypes.string.isRequired,
     buttonText: PropTypes.string.isRequired,
     showButton: PropTypes.bool, // Add prop type for showButton
 };

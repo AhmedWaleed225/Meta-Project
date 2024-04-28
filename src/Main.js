@@ -1,39 +1,37 @@
-import './Main.css';
-import React from 'react';
+// Main.js
+import React, { useReducer } from 'react';
+import BookingForm from './BookingForm';
 
 function Main() {
+  // Function to initialize the times state
+  const initializeTimes = () => {
+    return ['17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
+  };
+
+  // Define the reducer function
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case 'UPDATE_TIMES':
+        // For now, return the same available times regardless of the date
+        return ['17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
+      default:
+        return state;
+    }
+  };
+
+  // Initialize state using useReducer
+  const [availableTimes, dispatch] = useReducer(reducer, [], initializeTimes);
+
+  // Function to update the times based on the selected date
+  const updateTimes = (selectedDate) => {
+    dispatch({ type: 'UPDATE_TIMES', payload: selectedDate });
+  };
+
   return (
-    <header>
-      <main>
-        <div className='main-header'>
-            <h2>This Week Specials!</h2>
-            <button>Online Menu</button>
-        </div>
-        <div className='Menu'>
-            <div className='Menu-item'>
-                <img src='https://hips.hearstapps.com/hmg-prod/images/greek-salad-index-642f292397bbf.jpg?crop=0.6666666666666667xw:1xh;center,top&resize=1200:*' alt='Greek Salad'></img>
-                <h5>Greek Salad</h5>
-                <h5 className='price'>4.99$</h5>
-                <p>The famous greek salad of crispy lettuce, peppers, olives and our Chicago style feta cheese, garnished with crunchy garlic and rosemary croutons. </p>
-                <h4>Order for delivery</h4>
-            </div>
-            <div className='Menu-item'>
-                <img src='https://www.eatyourselfskinny.com/wp-content/uploads/2017/09/bruschetta-4-1200x1793.jpg' alt='Greek Salad'></img>
-                <h5>Bruchetta</h5>
-                <h5 className='price'>5.99$</h5>
-                <p>Our Bruschetta is made from grilled bread that has been smeared with garlic and seasoned with salt and olive oil.  </p>
-                <h4>Order for delivery</h4>
-            </div>
-            <div className='Menu-item'>
-                <img src='https://www.mybakingaddiction.com/wp-content/uploads/2023/07/plated-layered-lemon-dessert-hero-500x375.jpg' alt='Greek Salad'></img>
-                <h5>Lemon Dessert</h5>
-                <h5 className='price'>5.00$</h5>
-                <p>This comes straight from grandma’s recipe book, every last ingredient has been sourced and is as authentic as can be imagined. </p>
-                <h4>Order for delivery</h4>
-            </div>
-        </div>
-      </main>
-    </header>
+    <div>
+      {/* Pass the availableTimes and updateTimes function to the BookingForm component */}
+      <BookingForm availableTimes={availableTimes} updateTimes={updateTimes} />
+    </div>
   );
 }
 
