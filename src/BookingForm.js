@@ -1,17 +1,30 @@
 // BookingForm.js
-import React from 'react';
 import './BookingForm.css';
-import PropTypes from 'prop-types'; // Import prop-types package
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
-function BookingForm({ availableTimes, updateTimes }) {
-  // Function to handle date change
+function BookingForm({ availableTimes, updateTimes, submitForm }) {
+  const [formData, setFormData] = useState({
+    date: '',
+    time: '',
+    guests: 1,
+    occasion: 'Birthday',
+  });
+
   const handleDateChange = (event) => {
-    // Dispatch the state change when the date form field is changed
-    updateTimes(event.target.value);
+    const selectedDate = event.target.value;
+    setFormData({ ...formData, date: selectedDate });
+    updateTimes(selectedDate);
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
+    event.preventDefault();
+    submitForm(formData);
   };
 
   return (
@@ -19,19 +32,17 @@ function BookingForm({ availableTimes, updateTimes }) {
       <h1>Book Now</h1>
       <form style={{ display: 'grid', maxWidth: '200px', gap: '20px' }} onSubmit={handleSubmit}>
         <label htmlFor="res-date">Choose date</label>
-        {/* Add onChange event handler to trigger handleDateChange */}
-        <input type="date" id="res-date" onChange={handleDateChange} />
+        <input type="date" id="res-date" value={formData.date} onChange={handleDateChange} />
         <label htmlFor="res-time">Choose time</label>
-        <select id="res-time">
-          {/* Map over the availableTimes array to display the available times */}
+        <select id="res-time" name="time" value={formData.time} onChange={handleInputChange}>
           {availableTimes.map((time, index) => (
             <option key={index}>{time}</option>
           ))}
         </select>
         <label htmlFor="guests">Number of guests</label>
-        <input type="number" placeholder="1" min="1" max="10" id="guests" />
+        <input type="number" name="guests" value={formData.guests} min="1" max="10" onChange={handleInputChange} />
         <label htmlFor="occasion">Occasion</label>
-        <select id="occasion">
+        <select id="occasion" name="occasion" value={formData.occasion} onChange={handleInputChange}>
           <option>Birthday</option>
           <option>Anniversary</option>
         </select>
@@ -41,10 +52,10 @@ function BookingForm({ availableTimes, updateTimes }) {
   );
 }
 
-// Add prop type validations
 BookingForm.propTypes = {
   availableTimes: PropTypes.arrayOf(PropTypes.string).isRequired,
   updateTimes: PropTypes.func.isRequired,
+  submitForm: PropTypes.func.isRequired,
 };
 
 export default BookingForm;

@@ -1,36 +1,56 @@
 // Main.js
-import React, { useReducer } from 'react';
+
+import React, { useReducer, useEffect, useState } from 'react';
 import BookingForm from './BookingForm';
+import ConfirmedBooking from './ConfirmedBooking';
+import { fetchAPI, submitAPI } from './api';
+import { useNavigate } from 'react-router-dom';
 
 function Main() {
-  // Function to initialize the times state
-  const initializeTimes = () => {
-    return ['17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
-  };
-
-  // Define the reducer function
   const reducer = (state, action) => {
     switch (action.type) {
       case 'UPDATE_TIMES':
-        // For now, return the same available times regardless of the date
-        return ['17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
+        return action.payload;
       default:
         return state;
     }
   };
 
-  // Initialize state using useReducer
-  const [availableTimes, dispatch] = useReducer(reducer, [], initializeTimes);
+  const [availableTimes, dispatch] = useReducer(reducer, []);
+  const [formData, setFormData] = useState(null); // Initialize formData state
+  const navigate = useNavigate();
 
-  // Function to update the times based on the selected date
-  const updateTimes = (selectedDate) => {
-    dispatch({ type: 'UPDATE_TIMES', payload: selectedDate });
+  const fetchAvailableTimes = async () => {
+    const today = new Date();
+    const times = await fetchAPI(today);
+    dispatch({ type: 'UPDATE_TIMES', payload: times });
+  };
+
+  useEffect(() => {
+    fetchAvailableTimes();
+  }, []);
+
+  const updateTimes = async (selectedDate) => {
+    const times = await fetchAPI(selectedDate);
+    dispatch({ type: 'UPDATE_TIMES', payload: times });
+  };
+
+  const submitForm = async (formData) => {
+    const isSubmitted = await submitAPI(formData);
+    if (isSubmitted) {
+      setFormData(formData); // Update formData state
+      navigate('/confirmed');
+    }
   };
 
   return (
     <div>
-      {/* Pass the availableTimes and updateTimes function to the BookingForm component */}
-      <BookingForm availableTimes={availableTimes} updateTimes={updateTimes} />
+      {/* Render BookingForm or ConfirmedBooking based on route */}
+      {formData ? (
+        <ConfirmedBooking formData={formData} />
+      ) : (
+        <BookingForm availableTimes={availableTimes} updateTimes={updateTimes} submitForm={submitForm} />
+      )}
     </div>
   );
 }
